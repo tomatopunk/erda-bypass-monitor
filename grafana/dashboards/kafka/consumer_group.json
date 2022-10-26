@@ -23,8 +23,8 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 14014,
   "graphTooltip": 0,
-  "id": 6,
-  "iteration": 1666579661624,
+  "id": 30,
+  "iteration": 1666751606921,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -93,7 +93,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.1",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "datasource": {
@@ -180,7 +180,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.1",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "datasource": {
@@ -394,7 +394,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 33,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [
     "KMinion",
@@ -404,45 +404,15 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "console-consumer-5004",
-          "value": "console-consumer-5004"
+          "selected": true,
+          "text": "erda-spans",
+          "value": "erda-spans"
         },
         "datasource": {
           "type": "prometheus",
           "uid": "P91F39821A59331CC"
         },
-        "definition": "label_values(kminion_kafka_consumer_group_topic_lag, group_id)",
-        "hide": 0,
-        "includeAll": false,
-        "label": "Consumer Group",
-        "multi": false,
-        "name": "consumerGroup",
-        "options": [],
-        "query": {
-          "query": "label_values(kminion_kafka_consumer_group_topic_lag, group_id)",
-          "refId": "Prometheus-Bypass-consumerGroup-Variable-Query"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "spot-monitor-event",
-          "value": "spot-monitor-event"
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "P91F39821A59331CC"
-        },
-        "definition": "label_values(kminion_kafka_consumer_group_topic_lag{group_id=\"$consumerGroup\"}, topic_name)",
+        "definition": "label_values(kminion_kafka_consumer_group_topic_lag{}, topic_name)",
         "hide": 0,
         "includeAll": false,
         "label": "Topic",
@@ -450,8 +420,8 @@
         "name": "topic",
         "options": [],
         "query": {
-          "query": "label_values(kminion_kafka_consumer_group_topic_lag{group_id=\"$consumerGroup\"}, topic_name)",
-          "refId": "Prometheus-Bypass-topic-Variable-Query"
+          "query": "label_values(kminion_kafka_consumer_group_topic_lag{}, topic_name)",
+          "refId": "StandardVariableQuery"
         },
         "refresh": 1,
         "regex": "",
@@ -461,17 +431,47 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "spot-analyzer-tracing",
+          "value": "spot-analyzer-tracing"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P91F39821A59331CC"
+        },
+        "definition": "label_values(kminion_kafka_consumer_group_topic_lag{topic_name=\"$topic\"}, group_id)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Consumer Group",
+        "multi": false,
+        "name": "consumerGroup",
+        "options": [],
+        "query": {
+          "query": "label_values(kminion_kafka_consumer_group_topic_lag{topic_name=\"$topic\"}, group_id)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       }
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Consumer Group",
   "uid": "RS8RnbsGz",
-  "version": 11,
+  "version": 2,
   "weekStart": ""
 }
