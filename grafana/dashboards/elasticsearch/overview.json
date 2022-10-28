@@ -27,7 +27,7 @@
     "gnetId": 2322,
     "graphTooltip": 0,
     "id": 48,
-    "iteration": 1666945765772,
+    "iteration": 1666945765806,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -59,6 +59,7 @@
       },
       {
         "datasource": {
+          "type": "prometheus",
           "uid": "$datasource"
         },
         "fieldConfig": {
@@ -141,6 +142,7 @@
             "datasource": {
               "uid": "$datasource"
             },
+            "exemplar": false,
             "expr": "elasticsearch_cluster_health_status{job=\"$job\",instance=~\"$instance\",cluster=\"$cluster\",color=\"red\"}==1 or (elasticsearch_cluster_health_status{job=\"$job\",instance=~\"$instance\",cluster=\"$cluster\",color=\"green\"}==1)+4 or (elasticsearch_cluster_health_status{job=\"$job\",instance=~\"$instance\",cluster=\"$cluster\",color=\"yellow\"}==1)+22",
             "format": "time_series",
             "instant": true,
@@ -762,6 +764,7 @@
       },
       {
         "datasource": {
+          "type": "prometheus",
           "uid": "$datasource"
         },
         "description": "The number of primary shards in your cluster. This is an aggregate total across all indices.",
@@ -829,9 +832,11 @@
             "datasource": {
               "uid": "$datasource"
             },
+            "exemplar": false,
             "expr": "elasticsearch_cluster_health_active_primary_shards{job=\"$job\",instance=~\"$instance\",cluster=\"$cluster\"}",
             "format": "time_series",
             "instant": true,
+            "interval": "",
             "intervalFactor": 2,
             "legendFormat": "",
             "refId": "A",
@@ -5898,7 +5903,7 @@
       "list": [
         {
           "current": {
-            "selected": false,
+            "selected": true,
             "text": "Prometheus-Bypass",
             "value": "Prometheus-Bypass"
           },
@@ -5917,9 +5922,9 @@
         },
         {
           "current": {
-            "selected": false,
-            "text": "log-elasticsearch-3",
-            "value": "log-elasticsearch-3"
+            "selected": true,
+            "text": "log-elasticsearch-1",
+            "value": "log-elasticsearch-1"
           },
           "datasource": {
             "uid": "$datasource"
@@ -5937,7 +5942,7 @@
           "refresh": 1,
           "regex": "",
           "skipUrlSync": false,
-          "sort": 0,
+          "sort": 1,
           "tagValuesQuery": "",
           "tagsQuery": "",
           "type": "query",
@@ -5952,7 +5957,7 @@
           "datasource": {
             "uid": "$datasource"
           },
-          "definition": "label_values(elasticsearch_indices_docs{job=\"$job\"},cluster)",
+          "definition": "label_values(elasticsearch_indices_docs{job=~\"$job\"},cluster)",
           "hide": 0,
           "includeAll": false,
           "label": "",
@@ -5960,8 +5965,8 @@
           "name": "cluster",
           "options": [],
           "query": {
-            "query": "label_values(elasticsearch_indices_docs{job=\"$job\"},cluster)",
-            "refId": "grafanacloud-mrrowowflamingo-prom-cluster-Variable-Query"
+            "query": "label_values(elasticsearch_indices_docs{job=~\"$job\"},cluster)",
+            "refId": "StandardVariableQuery"
           },
           "refresh": 1,
           "regex": "",
@@ -5973,22 +5978,22 @@
         {
           "current": {
             "selected": false,
-            "text": "All",
-            "value": "$__all"
+            "text": "elasticsearch-1",
+            "value": "elasticsearch-1"
           },
           "datasource": {
             "uid": "$datasource"
           },
-          "definition": "label_values(elasticsearch_indices_docs{job=\"$job\", cluster=\"$cluster\", name!=\"\"},name)",
+          "definition": "label_values(elasticsearch_indices_docs{job=~\"$job\", cluster=~\"$cluster\", name!=\"\"},name)",
           "hide": 0,
-          "includeAll": true,
+          "includeAll": false,
           "label": "",
-          "multi": true,
+          "multi": false,
           "name": "name",
           "options": [],
           "query": {
-            "query": "label_values(elasticsearch_indices_docs{job=\"$job\", cluster=\"$cluster\", name!=\"\"},name)",
-            "refId": "grafanacloud-mrrowowflamingo-prom-name-Variable-Query"
+            "query": "label_values(elasticsearch_indices_docs{job=~\"$job\", cluster=~\"$cluster\", name!=\"\"},name)",
+            "refId": "StandardVariableQuery"
           },
           "refresh": 1,
           "regex": "",
@@ -6000,13 +6005,13 @@
         {
           "current": {
             "selected": false,
-            "text": "10.16.1.109:9114",
-            "value": "10.16.1.109:9114"
+            "text": "10.16.1.113:9114",
+            "value": "10.16.1.113:9114"
           },
           "datasource": {
             "uid": "$datasource"
           },
-          "definition": "label_values(elasticsearch_indices_docs{job=\"$job\",job=\"$job\", cluster=\"$cluster\", name!=\"\"},instance)",
+          "definition": "label_values(elasticsearch_indices_docs{job=~\"$job\", cluster=~\"$cluster\", name!=\"\"},instance)",
           "hide": 0,
           "includeAll": false,
           "label": "",
@@ -6014,8 +6019,8 @@
           "name": "instance",
           "options": [],
           "query": {
-            "query": "label_values(elasticsearch_indices_docs{job=\"$job\", cluster=\"$cluster\", name!=\"\"},instance)",
-            "refId": "grafanacloud-mrrowowflamingo-prom-instance-Variable-Query"
+            "query": "label_values(elasticsearch_indices_docs{job=~\"$job\", cluster=~\"$cluster\", name!=\"\"},instance)",
+            "refId": "StandardVariableQuery"
           },
           "refresh": 1,
           "regex": "",
@@ -6058,6 +6063,6 @@
     "timezone": "",
     "title": "ElasticSearch Overview",
     "uid": "QJquJJNVz",
-    "version": 8,
+    "version": 10,
     "weekStart": ""
   }
