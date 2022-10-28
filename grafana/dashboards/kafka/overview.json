@@ -957,7 +957,7 @@
             "uid": "Prometheus-Bypass"
           },
           "exemplar": true,
-          "expr": "irate(process_cpu_seconds_total{job=~\"$jobs\"}[$__rate_interval])*100",
+          "expr": "irate(process_cpu_seconds_total{job=~\"$jobs\",container=\"\"}[$__rate_interval])*100",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,

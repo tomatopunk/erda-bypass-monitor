@@ -250,7 +250,7 @@
       "pluginVersion": "8.3.1",
       "targets": [
         {
-          "expr": "kminion_kafka_broker_info",
+          "expr": "kminion_kafka_broker_info{is_controller=\"true\"}",
           "format": "table",
           "instant": true,
           "interval": "",
