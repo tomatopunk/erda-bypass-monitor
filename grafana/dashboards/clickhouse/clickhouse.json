@@ -4036,7 +4036,8 @@
   "style": "dark",
   "tags": [
     "clickhouse",
-    "operator"
+    "operator",
+    "Provisioning"
   ],
   "templating": {
     "list": [

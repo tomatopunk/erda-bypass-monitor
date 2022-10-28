@@ -680,7 +680,9 @@
   ],
   "schemaVersion": 33,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "Provisioning"
+  ],
   "templating": {
     "list": [
       {

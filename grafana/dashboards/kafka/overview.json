@@ -6044,7 +6044,9 @@
   "refresh": "",
   "schemaVersion": 34,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "Provisioning"
+  ],
   "templating": {
     "list": [
       {

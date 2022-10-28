@@ -775,7 +775,8 @@
   "style": "dark",
   "tags": [
     "Kafka",
-    "KMinion"
+    "KMinion",
+    "Provisioning"
   ],
   "templating": {
     "list": [
