@@ -26,7 +26,7 @@
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
     "id": 49,
-    "iteration": 1666946668761,
+    "iteration": 1666946668767,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -987,7 +987,7 @@
       "list": [
         {
           "current": {
-            "selected": false,
+            "selected": true,
             "text": "Prometheus-Bypass",
             "value": "Prometheus-Bypass"
           },
@@ -1006,9 +1006,9 @@
         },
         {
           "current": {
-            "selected": true,
-            "text": "addon-kminion",
-            "value": "addon-kminion"
+            "selected": false,
+            "text": "log-elasticsearch-3",
+            "value": "log-elasticsearch-3"
           },
           "datasource": {
             "uid": "$datasource"
@@ -1036,13 +1036,9 @@
         {
           "allValue": "",
           "current": {
-            "selected": true,
-            "text": [
-              "All"
-            ],
-            "value": [
-              "$__all"
-            ]
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
           },
           "datasource": {
             "uid": "$datasource"
@@ -1070,7 +1066,7 @@
       ]
     },
     "time": {
-      "from": "now-30m",
+      "from": "now-1h",
       "to": "now"
     },
     "timepicker": {
@@ -1100,6 +1096,6 @@
     "timezone": "",
     "title": "Go runtime metrics",
     "uid": "y2EtfJNVz",
-    "version": 4,
+    "version": 5,
     "weekStart": ""
   }
