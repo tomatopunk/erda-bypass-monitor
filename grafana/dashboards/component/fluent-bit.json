@@ -21,8 +21,8 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
-  "iteration": 1665473094938,
+  "id": 95,
+  "iteration": 1667198504758,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -296,7 +296,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "Prometheus-Bypass"
+        "uid": "P91F39821A59331CC"
       },
       "description": "",
       "fieldConfig": {
@@ -308,7 +308,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "drawStyle": "line",
+            "drawStyle": "bars",
             "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
@@ -364,7 +364,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "multi"
         }
       },
       "targets": [
@@ -375,7 +375,7 @@
           },
           "exemplar": true,
           "expr": "sum(rate(container_cpu_usage_seconds_total{container!=\"POD\", pod='$pod'}[1m]) * 100) by (pod)",
-          "interval": "",
+          "interval": "1m",
           "legendFormat": "total-{{pod}}",
           "refId": "A"
         },
@@ -387,7 +387,7 @@
           "exemplar": true,
           "expr": "sum(rate(container_cpu_user_seconds_total{container!=\"POD\",pod='$pod'}[1m]) * 100) by (pod)",
           "hide": false,
-          "interval": "",
+          "interval": "1m",
           "legendFormat": "user-{{pod}}",
           "refId": "B"
         },
@@ -399,7 +399,7 @@
           "exemplar": true,
           "expr": "sum(rate(container_cpu_system_seconds_total{container!=\"POD\",pod='$pod'}[1m]) * 100) by (pod)",
           "hide": false,
-          "interval": "",
+          "interval": "1m",
           "legendFormat": "sys-{{pod}}",
           "refId": "C"
         }
@@ -500,7 +500,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "Prometheus-Bypass"
+        "uid": "P91F39821A59331CC"
       },
       "description": "",
       "fieldConfig": {
@@ -568,7 +568,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "multi"
         }
       },
       "targets": [
@@ -579,7 +579,7 @@
           },
           "exemplar": true,
           "expr": "rate(container_fs_reads_bytes_total{container!=\"POD\",pod='$pod'}[1m])",
-          "interval": "",
+          "interval": "1m",
           "legendFormat": "{{pod}} {{device}}",
           "refId": "A"
         }
@@ -590,7 +590,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "Prometheus-Bypass"
+        "uid": "P91F39821A59331CC"
       },
       "description": "",
       "fieldConfig": {
@@ -658,7 +658,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "multi"
         }
       },
       "targets": [
@@ -669,7 +669,7 @@
           },
           "exemplar": true,
           "expr": "rate(container_network_transmit_bytes_total{container=\"POD\",pod='$pod', interface=\"eth0\"}[1m])",
-          "interval": "",
+          "interval": "1m",
           "legendFormat": "{{pod}} {{interface}}",
           "refId": "A"
         }
@@ -678,18 +678,19 @@
       "type": "timeseries"
     }
   ],
-  "schemaVersion": 33,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [
-    "Provisioning"
+    "Provisioning",
+    "Fluent-bit"
   ],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "fluent-bit-2339bcf361-sfhws",
-          "value": "fluent-bit-2339bcf361-sfhws"
+          "selected": true,
+          "text": "dice-fluent-bit-cg8lc",
+          "value": "dice-fluent-bit-cg8lc"
         },
         "datasource": {
           "type": "prometheus",
@@ -706,7 +707,7 @@
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "fluent-bit.*",
+        "regex": ".*fluent-bit.*",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
