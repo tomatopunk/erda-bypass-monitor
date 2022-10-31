@@ -21,8 +21,8 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
-  "iteration": 1665473109372,
+  "id": 35,
+  "iteration": 1667197041478,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -42,7 +42,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "Prometheus-Bypass"
+        "uid": "P91F39821A59331CC"
       },
       "fieldConfig": {
         "defaults": {
@@ -121,7 +121,7 @@
           "exemplar": true,
           "expr": "sum(rate(container_cpu_usage_seconds_total{container!=\"POD\", pod=~'$pod'}[1m]) * 100) by (pod)",
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "{{pod}}",
           "refId": "A"
         }
       ],
@@ -232,7 +232,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "Prometheus-Bypass"
+        "uid": "P91F39821A59331CC"
       },
       "fieldConfig": {
         "defaults": {
@@ -299,7 +299,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "multi"
         }
       },
       "targets": [
@@ -310,8 +310,9 @@
           },
           "exemplar": true,
           "expr": "container_memory_working_set_bytes{pod='$pod', container!='POD'}",
+          "hide": false,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "Usage",
           "refId": "A"
         },
         {
@@ -323,7 +324,7 @@
           "expr": "container_memory_cache{pod='$pod', container!='POD'}",
           "hide": false,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "Cache",
           "refId": "B"
         }
       ],
@@ -333,7 +334,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "Prometheus-Bypass"
+        "uid": "P91F39821A59331CC"
       },
       "fieldConfig": {
         "defaults": {
@@ -400,7 +401,7 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "mode": "multi"
         }
       },
       "targets": [
@@ -411,8 +412,9 @@
           },
           "exemplar": true,
           "expr": "go_memstats_heap_inuse_bytes{pod='$pod'}",
+          "hide": false,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "InUse {{instance}}",
           "refId": "A"
         },
         {
@@ -424,7 +426,7 @@
           "expr": "go_memstats_heap_sys_bytes{pod='$pod'}",
           "hide": false,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "Heap Total{{instance}}",
           "refId": "D"
         },
         {
@@ -436,7 +438,7 @@
           "expr": "go_memstats_heap_idle_bytes{pod='$pod'}",
           "hide": false,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "Heap Idle {{instance}}",
           "refId": "C"
         },
         {
@@ -448,7 +450,7 @@
           "expr": "go_memstats_heap_released_bytes{pod='$pod'}",
           "hide": false,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "Heap Release {{instance}}",
           "refId": "B"
         }
       ],
@@ -942,10 +944,10 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 33,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [
-    "Provisioning"
+    "Erda"
   ],
   "templating": {
     "list": [
@@ -1035,9 +1037,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "streaming-463673167b-8dd448f4d-gxxww",
-          "value": "streaming-463673167b-8dd448f4d-gxxww"
+          "selected": true,
+          "text": "dice-streaming-5dfdd8c84b-62kzx",
+          "value": "dice-streaming-5dfdd8c84b-62kzx"
         },
         "datasource": {
           "type": "prometheus",
@@ -1055,7 +1057,7 @@
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "^streaming.*",
+        "regex": ".*streaming.*",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
@@ -1063,7 +1065,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
