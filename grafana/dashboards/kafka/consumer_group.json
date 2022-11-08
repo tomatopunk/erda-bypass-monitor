@@ -23,8 +23,8 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 14014,
   "graphTooltip": 0,
-  "id": 30,
-  "iteration": 1666751606921,
+  "id": 38,
+  "iteration": 1667891805264,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -66,7 +66,7 @@
               }
             ]
           },
-          "unit": "locale"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -110,7 +110,7 @@
           "refId": "A"
         }
       ],
-      "title": "Topic Lag",
+      "title": "Avg Topic Lag",
       "type": "stat"
     },
     {
@@ -118,7 +118,7 @@
         "type": "prometheus",
         "uid": "P91F39821A59331CC"
       },
-      "description": "平均每分钟消费量",
+      "description": "一分钟内平均消费条数",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -153,7 +153,7 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -188,7 +188,7 @@
             "uid": "P91F39821A59331CC"
           },
           "exemplar": true,
-          "expr": "avg (sum(rate(kminion_kafka_consumer_group_topic_offset_sum{group_id=\"$consumerGroup\",topic_name=\"$topic\"}[$__interval])))",
+          "expr": "avg (sum(irate(kminion_kafka_consumer_group_topic_offset_sum{group_id=\"$consumerGroup\",topic_name=\"$topic\"}[$__interval])))",
           "format": "time_series",
           "instant": false,
           "interval": "1m",
@@ -197,7 +197,74 @@
           "refId": "A"
         }
       ],
-      "title": "Offset Commit Rate",
+      "title": "Avg Offset Commit",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P91F39821A59331CC"
+      },
+      "description": "预计追平耗时",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 8,
+        "y": 0
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P91F39821A59331CC"
+          },
+          "exemplar": true,
+          "expr": "sum(kminion_kafka_consumer_group_topic_lag{group_id=\"$consumerGroup\",topic_name=\"$topic\"})/ sum(irate(kminion_kafka_consumer_group_topic_offset_sum{group_id=\"$consumerGroup\",topic_name=\"$topic\"}[5m]))",
+          "interval": "1m",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Estimated time to equalize",
       "type": "stat"
     },
     {
@@ -261,8 +328,8 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 16,
-        "x": 8,
+        "w": 12,
+        "x": 12,
         "y": 0
       },
       "id": 2,
@@ -371,19 +438,29 @@
       "pluginVersion": "8.3.1",
       "targets": [
         {
-          "expr": "avg by (topic_name) (rate(kminion_kafka_topic_high_water_mark_sum{topic_name=\"$topic\"}[$__rate_interval]))",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P91F39821A59331CC"
+          },
+          "exemplar": true,
+          "expr": "avg by (topic_name) (irate(kminion_kafka_topic_high_water_mark_sum{topic_name=\"$topic\"}[$__rate_interval]))",
           "format": "time_series",
           "hide": false,
-          "interval": "",
+          "interval": "1m",
           "intervalFactor": 1,
           "legendFormat": "Incoming: {{topic_name}}",
           "refId": "A"
         },
         {
-          "expr": "avg by (topic_name, group_id) (rate(kminion_kafka_consumer_group_topic_offset_sum{group_id=\"$consumerGroup\", topic_name=\"$topic\"}[$__rate_interval]))",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P91F39821A59331CC"
+          },
+          "exemplar": true,
+          "expr": "avg by (topic_name, group_id) (irate(kminion_kafka_consumer_group_topic_offset_sum{group_id=\"$consumerGroup\", topic_name=\"$topic\"}[$__rate_interval]))",
           "format": "time_series",
           "hide": false,
-          "interval": "",
+          "interval": "1m",
           "intervalFactor": 1,
           "legendFormat": "Consuming: {{topic_name}}",
           "refId": "B"
@@ -406,44 +483,14 @@
       {
         "current": {
           "selected": true,
-          "text": "erda-spans",
-          "value": "erda-spans"
+          "text": "spot-log-metrics",
+          "value": "spot-log-metrics"
         },
         "datasource": {
           "type": "prometheus",
           "uid": "P91F39821A59331CC"
         },
-        "definition": "label_values(kminion_kafka_consumer_group_topic_lag{}, topic_name)",
-        "hide": 0,
-        "includeAll": false,
-        "label": "Topic",
-        "multi": false,
-        "name": "topic",
-        "options": [],
-        "query": {
-          "query": "label_values(kminion_kafka_consumer_group_topic_lag{}, topic_name)",
-          "refId": "StandardVariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": "spot-analyzer-tracing",
-          "value": "spot-analyzer-tracing"
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "P91F39821A59331CC"
-        },
-        "definition": "label_values(kminion_kafka_consumer_group_topic_lag{topic_name=\"$topic\"}, group_id)",
+        "definition": "label_values(kminion_kafka_consumer_group_topic_lag{}, group_id)",
         "hide": 0,
         "includeAll": false,
         "label": "Consumer Group",
@@ -451,13 +498,43 @@
         "name": "consumerGroup",
         "options": [],
         "query": {
-          "query": "label_values(kminion_kafka_consumer_group_topic_lag{topic_name=\"$topic\"}, group_id)",
+          "query": "label_values(kminion_kafka_consumer_group_topic_lag{}, group_id)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 1,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "spot-container-log",
+          "value": "spot-container-log"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P91F39821A59331CC"
+        },
+        "definition": "label_values(kminion_kafka_consumer_group_topic_lag{group_id=\"$consumerGroup\"}, topic_name)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Topic",
+        "multi": false,
+        "name": "topic",
+        "options": [],
+        "query": {
+          "query": "label_values(kminion_kafka_consumer_group_topic_lag{group_id=\"$consumerGroup\"}, topic_name)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -473,6 +550,6 @@
   "timezone": "",
   "title": "Consumer Group",
   "uid": "RS8RnbsGz",
-  "version": 2,
+  "version": 6,
   "weekStart": ""
 }
