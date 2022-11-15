@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 81,
-  "iteration": 1668482581373,
+  "iteration": 1668482581381,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -505,6 +505,10 @@
               {
                 "id": "custom.displayMode",
                 "value": "json-view"
+              },
+              {
+                "id": "custom.filterable",
+                "value": true
               }
             ]
           },
