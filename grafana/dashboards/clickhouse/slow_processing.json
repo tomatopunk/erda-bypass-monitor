@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 81,
-  "iteration": 1668482581369,
+  "iteration": 1668482581373,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -495,24 +495,16 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "tables"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 121
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
               "options": "table"
             },
             "properties": [
               {
                 "id": "custom.width",
-                "value": 104
+                "value": 150
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "json-view"
               }
             ]
           },
@@ -564,7 +556,7 @@
             }
           },
           "queryType": "sql",
-          "rawSql": "SELECT query_start_time,\n       query_duration_ms,\n       arrayElement(tables,1) as table,\n       query                                                       AS query,\n       concat(toString(read_rows), ' rows / ', formatReadableSize(read_bytes))     AS read,\n       concat(toString(result_rows), ' rows / ', formatReadableSize(result_bytes)) AS result,\n       formatReadableSize(memory_usage)                                            AS \"memory usage\"\nFROM system.query_log\nWHERE type = 'QueryFinish'\n  AND query_kind = '${queryKind}'\n  AND $__timeFilter(event_time)\n  and indexOf(databases,'monitor') > 0\n  and indexOf(tables,'monitor.metrics_meta') <=0\n  and arrayExists(x -> x like '%$type%', tables) = 1\norder by query_duration_ms desc\nLIMIT 2000",
+          "rawSql": "SELECT query_start_time,\n       query_duration_ms,\n       tables as table,\n       query                                                       AS query,\n       concat(toString(read_rows), ' rows / ', formatReadableSize(read_bytes))     AS read,\n       concat(toString(result_rows), ' rows / ', formatReadableSize(result_bytes)) AS result,\n       formatReadableSize(memory_usage)                                            AS \"memory usage\"\nFROM system.query_log\nWHERE type = 'QueryFinish'\n  AND query_kind = '${queryKind}'\n  AND $__timeFilter(event_time)\n  and indexOf(databases,'monitor') > 0\n  and indexOf(tables,'monitor.metrics_meta') <=0\n  and arrayExists(x -> x like '%$type%', tables) = 1\norder by query_duration_ms desc\nLIMIT 2000",
           "refId": "A"
         }
       ],
@@ -623,8 +615,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Insert",
-          "value": "Insert"
+          "text": "Select",
+          "value": "Select"
         },
         "datasource": {
           "type": "grafana-clickhouse-datasource",
@@ -653,6 +645,6 @@
   "timezone": "",
   "title": "Slow Processing",
   "uid": "Wh9yjpvVk2",
-  "version": 11,
+  "version": 12,
   "weekStart": ""
 }
