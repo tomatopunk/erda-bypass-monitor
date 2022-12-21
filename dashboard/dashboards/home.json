@@ -1,0 +1,1701 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 134,
+    "iteration": 1671614582057,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 6,
+        "panels": [],
+        "title": "Row title",
+        "type": "row"
+      },
+      {
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 0,
+          "y": 1
+        },
+        "id": 2,
+        "options": {
+          "content": "![111](https://terminus-paas.oss-cn-hangzhou.aliyuncs.com/upload/images/cdbf33b8-8f4c-4b0b-9ac3-bafaae05c0d2.jpeg)",
+          "mode": "markdown"
+        },
+        "pluginVersion": "8.3.3",
+        "transparent": true,
+        "type": "text"
+      },
+      {
+        "gridPos": {
+          "h": 4,
+          "w": 21,
+          "x": 3,
+          "y": 1
+        },
+        "id": 4,
+        "options": {
+          "content": "# **Welecome to erda-bypass**",
+          "mode": "markdown"
+        },
+        "pluginVersion": "8.3.3",
+        "transparent": true,
+        "type": "text"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 5
+        },
+        "id": 12,
+        "panels": [],
+        "title": "CLUSTER",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P91F39821A59331CC"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              }
+            },
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "unit": "short"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Ready"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "DiskPressure"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "MemoryPressure"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "NetworkUnavailable"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 11,
+          "x": 0,
+          "y": 6
+        },
+        "id": 10,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "displayLabels": [
+            "percent",
+            "name"
+          ],
+          "legend": {
+            "displayMode": "table",
+            "placement": "right",
+            "values": [
+              "value"
+            ]
+          },
+          "pieType": "pie",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "pluginVersion": "8.3.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": false,
+            "expr": "sum(kube_node_status_condition{status=\"true\"}) by(condition)",
+            "format": "time_series",
+            "instant": true,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{condition}}",
+            "refId": "A"
+          }
+        ],
+        "title": "Non-Ready Nodes",
+        "transparent": true,
+        "type": "piechart"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P91F39821A59331CC"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              }
+            },
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "unit": "short"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Ready"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "DiskPressure"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "MemoryPressure"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "NetworkUnavailable"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 11,
+          "x": 11,
+          "y": 6
+        },
+        "id": 42,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "displayLabels": [
+            "percent",
+            "name"
+          ],
+          "legend": {
+            "displayMode": "table",
+            "placement": "right",
+            "values": [
+              "value"
+            ]
+          },
+          "pieType": "pie",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "pluginVersion": "8.3.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": false,
+            "expr": "sum(kube_pod_status_reason) by (reason)",
+            "format": "time_series",
+            "instant": true,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{reason}}",
+            "refId": "A"
+          }
+        ],
+        "title": "Reason",
+        "transparent": true,
+        "type": "piechart"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 14
+        },
+        "id": 8,
+        "panels": [],
+        "title": "AGENT",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P91F39821A59331CC"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "binBps"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 15
+        },
+        "id": 14,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "table",
+            "placement": "right"
+          },
+          "tooltip": {
+            "mode": "multi"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "Prometheus-Bypass"
+            },
+            "exemplar": true,
+            "expr": "rate(container_network_transmit_bytes_total{container=\"POD\",pod=~\".*fluent-bit.*\", interface=\"eth0\"}[1m])",
+            "instant": false,
+            "interval": "1m",
+            "legendFormat": "{{pod}} {{interface}}",
+            "refId": "A"
+          }
+        ],
+        "title": "Fluent-bit Net Output",
+        "transparent": true,
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P91F39821A59331CC"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "binBps"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 15
+        },
+        "id": 15,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "table",
+            "placement": "right"
+          },
+          "tooltip": {
+            "mode": "multi"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "Prometheus-Bypass"
+            },
+            "exemplar": true,
+            "expr": "rate(container_network_transmit_bytes_total{container=\"POD\",pod=~\".*prometheus-operator.*\", interface=\"eth0\"}[1m])",
+            "interval": "1m",
+            "legendFormat": "{{pod}} {{interface}}",
+            "refId": "A"
+          }
+        ],
+        "title": "Prometheus-Agent Net Output",
+        "transparent": true,
+        "type": "timeseries"
+      },
+      {
+        "gridPos": {
+          "h": 7,
+          "w": 12,
+          "x": 0,
+          "y": 23
+        },
+        "id": 17,
+        "options": {
+          "folderId": 68,
+          "maxItems": 1000,
+          "query": "",
+          "showHeadings": false,
+          "showRecentlyViewed": false,
+          "showSearch": true,
+          "showStarred": false,
+          "tags": []
+        },
+        "pluginVersion": "8.3.3",
+        "transparent": true,
+        "type": "dashlist"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 30
+        },
+        "id": 19,
+        "panels": [],
+        "title": "KAFKA",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P91F39821A59331CC"
+        },
+        "description": "Number of active controllers in the cluster.",
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#299c46",
+                  "value": null
+                },
+                {
+                  "color": "#e5ac0e",
+                  "value": 2
+                },
+                {
+                  "color": "#bf1b00"
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 0,
+          "y": 31
+        },
+        "id": 21,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "fieldOptions": {
+            "calcs": [
+              "lastNotNull"
+            ]
+          },
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.3.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "Prometheus-Bypass"
+            },
+            "exemplar": true,
+            "expr": "sum(kafka_controller_kafkacontroller_activecontrollercount{})",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Active Controllers",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P91F39821A59331CC"
+        },
+        "description": "Number of Brokers Online",
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#d44a3a",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237, 129, 40, 0.89)",
+                  "value": 0
+                },
+                {
+                  "color": "semi-dark-green",
+                  "value": 2
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 4,
+          "y": 31
+        },
+        "id": 23,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "fieldOptions": {
+            "calcs": [
+              "lastNotNull"
+            ]
+          },
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.3.3",
+        "repeatDirection": "h",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "Prometheus-Bypass"
+            },
+            "exemplar": true,
+            "expr": "count(kafka_server_replicamanager_leadercount{})",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Brokers Online",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P91F39821A59331CC"
+        },
+        "description": "Number of partitions that dont have an active leader and are hence not writable or readable.",
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "semi-dark-green",
+                  "value": null
+                },
+                {
+                  "color": "#bf1b00",
+                  "value": 1
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 8,
+          "y": 31
+        },
+        "id": 27,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "fieldOptions": {
+            "calcs": [
+              "lastNotNull"
+            ]
+          },
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.3.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "Prometheus-Bypass"
+            },
+            "exemplar": true,
+            "expr": "sum(kafka_controller_kafkacontroller_offlinepartitionscount{})",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Offline Partitions Count",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P91F39821A59331CC"
+        },
+        "description": "Number of under-replicated partitions (| ISR | < | all replicas |).",
+        "fieldConfig": {
+          "defaults": {
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "semi-dark-green",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237, 129, 40, 0.89)",
+                  "value": 1
+                },
+                {
+                  "color": "#bf1b00",
+                  "value": 5
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 12,
+          "y": 31
+        },
+        "id": 29,
+        "links": [],
+        "maxDataPoints": 100,
+        "options": {
+          "colorMode": "value",
+          "fieldOptions": {
+            "calcs": [
+              "lastNotNull"
+            ]
+          },
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.3.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "Prometheus-Bypass"
+            },
+            "exemplar": true,
+            "expr": "sum(kafka_server_replicamanager_underreplicatedpartitions{})",
+            "format": "time_series",
+            "hide": false,
+            "interval": "",
+            "intervalFactor": 2,
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Under Replicated Partitions",
+        "transparent": true,
+        "type": "stat"
+      },
+      {
+        "gridPos": {
+          "h": 4,
+          "w": 8,
+          "x": 16,
+          "y": 31
+        },
+        "id": 33,
+        "options": {
+          "folderId": 33,
+          "maxItems": 10,
+          "query": "",
+          "showHeadings": false,
+          "showRecentlyViewed": false,
+          "showSearch": true,
+          "showStarred": false,
+          "tags": []
+        },
+        "pluginVersion": "8.3.3",
+        "transparent": true,
+        "type": "dashlist"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P91F39821A59331CC"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto",
+              "filterable": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Value #A"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "lag"
+                },
+                {
+                  "id": "custom.displayMode",
+                  "value": "lcd-gauge"
+                },
+                {
+                  "id": "thresholds",
+                  "value": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "orange",
+                        "value": 10000
+                      },
+                      {
+                        "color": "red",
+                        "value": 100000
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "unit",
+                  "value": "short"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 35
+        },
+        "id": 25,
+        "options": {
+          "footer": {
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "lag"
+            }
+          ]
+        },
+        "pluginVersion": "8.3.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": false,
+            "expr": "sum(kminion_kafka_consumer_group_topic_lag{}) by(group_id,topic_name)",
+            "format": "table",
+            "instant": true,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Subscribed Consumer Groups",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true,
+                "__cluster__": true,
+                "__name__": true,
+                "expires_at": false,
+                "instance": true,
+                "job": true,
+                "kubernetes_namespace": true,
+                "kubernetes_pod_name": true
+              },
+              "indexByName": {
+                "Time": 0,
+                "Value": 10,
+                "__cluster__": 1,
+                "__name__": 2,
+                "expires_at": 9,
+                "group_id": 3,
+                "instance": 4,
+                "job": 5,
+                "kubernetes_namespace": 6,
+                "kubernetes_pod_name": 7,
+                "topic_name": 8
+              },
+              "renameByName": {
+                "Value": "Group -> Topic Lag",
+                "expires_at": "Last Offset Expires At",
+                "group_id": "Group ID",
+                "instance": "",
+                "job": "",
+                "topic_name": "Topic"
+              }
+            }
+          }
+        ],
+        "transparent": true,
+        "type": "table"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 44
+        },
+        "id": 35,
+        "panels": [],
+        "repeat": "clickhouse_hostname",
+        "title": "Storage-Clickhouse",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P91F39821A59331CC"
+        },
+        "description": "The time which CPU spent on various types of activity total for the selected period",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "ns"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 10,
+          "w": 24,
+          "x": 0,
+          "y": 45
+        },
+        "id": 37,
+        "interval": "1m",
+        "links": [],
+        "options": {
+          "displayMode": "gradient",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true
+        },
+        "pluginVersion": "8.3.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_NetworkSendElapsedMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "Network Send",
+            "refId": "D"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_NetworkReceiveElapsedMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "Network Receive",
+            "refId": "C"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_DiskReadElapsedMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "Disk Read syscall",
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_DiskWriteElapsedMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "Disk Write syscall",
+            "refId": "B"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_RealTimeMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "Real Time",
+            "refId": "E"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_UserTimeMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "User Time",
+            "refId": "F"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_SystemTimeMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "System Time",
+            "refId": "G"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_OSIOWaitMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "OS IO Wait",
+            "refId": "H"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_OSCPUWaitMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "OS CPU Wait",
+            "refId": "I"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_OSCPUVirtualTimeMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "OS CPU Virtual",
+            "refId": "J"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_ThrottlerSleepMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "Throttler Sleep",
+            "refId": "K"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_DelayedInsertsMilliseconds{hostname=~\"$clickhouse_hostname\"}[1m]) * 1000",
+            "interval": "",
+            "legendFormat": "Delayed Insert",
+            "refId": "L"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_ZooKeeperWaitMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "Zookeeper Wait",
+            "refId": "M"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_CompileExpressionsMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "Compile Expressions",
+            "refId": "N"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_MergesTimeMilliseconds{hostname=~\"$clickhouse_hostname\"}[1m]) * 1000",
+            "interval": "",
+            "legendFormat": "Merges",
+            "refId": "O"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_RWLockReadersWaitMilliseconds{hostname=~\"$clickhouse_hostname\"}[1m]) * 1000",
+            "interval": "",
+            "legendFormat": "RWLock Reader Wait",
+            "refId": "P"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_RWLockWritersWaitMilliseconds{hostname=~\"$clickhouse_hostname\"}[1m]) * 1000",
+            "interval": "",
+            "legendFormat": "RWLock Writer Wait",
+            "refId": "Q"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_SelectQueryTimeMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "Select Query",
+            "refId": "R"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_InsertQueryTimeMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "Insert Query",
+            "refId": "S"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_S3ReadMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "S3 Read",
+            "refId": "T"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "increase(chi_clickhouse_event_S3WriteMicroseconds{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "S3 Write",
+            "refId": "U"
+          }
+        ],
+        "title": "CPU Time total $clickhouse_hostname",
+        "transformations": [],
+        "transparent": true,
+        "type": "bargauge"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P91F39821A59331CC"
+        },
+        "description": "Number of INSERT queries to be interpreted and potentially executed. Does not include queries that failed to parse or were rejected due to AST size limits, quota limits or limits on the number of simultaneously running queries. May include internal queries initiated by ClickHouse itself. Does not count subqueries.",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 10,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": true,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "links": [],
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "short"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 24,
+          "x": 0,
+          "y": 55
+        },
+        "id": 39,
+        "links": [
+          {
+            "targetBlank": true,
+            "title": "max_memory_usage",
+            "url": "https://clickhouse.tech/docs/en/operations/settings/query-complexity/#settings_max_memory_usage"
+          }
+        ],
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "hidden",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "multi"
+          }
+        },
+        "pluginVersion": "8.3.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "irate(chi_clickhouse_event_InsertQuery{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "interval": "",
+            "legendFormat": "Insert",
+            "refId": "C"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "irate(chi_clickhouse_event_SelectQuery{hostname=~\"$clickhouse_hostname\"}[1m])",
+            "hide": false,
+            "interval": "",
+            "legendFormat": "Select",
+            "refId": "A"
+          }
+        ],
+        "title": "Insert Queries $clickhouse_hostname",
+        "transparent": true,
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P91F39821A59331CC"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "bytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 67
+        },
+        "id": 41,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "hidden",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "multi"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "chi_clickhouse_metric_DiskTotalBytes{hostname=~\"$clickhouse_hostname\"}",
+            "interval": "",
+            "legendFormat": "Total",
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "P91F39821A59331CC"
+            },
+            "exemplar": true,
+            "expr": "chi_clickhouse_metric_DiskTotalBytes{hostname=~\"$clickhouse_hostname\"}-chi_clickhouse_metric_DiskFreeBytes{hostname=~\"$clickhouse_hostname\"}",
+            "hide": false,
+            "interval": "",
+            "legendFormat": "Usage",
+            "refId": "B"
+          }
+        ],
+        "title": "Disk $clickhouse_hostname",
+        "transparent": true,
+        "type": "timeseries"
+      }
+    ],
+    "schemaVersion": 34,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "chi-erdatest-erda-0-0.default.svc.cluster.local",
+            "value": "chi-erdatest-erda-0-0.default.svc.cluster.local"
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P91F39821A59331CC"
+          },
+          "definition": "label_values({__name__ =~ \"chi_clickhouse_metric_Uptime|chi_clickhouse_metric_fetch_errors\"}, hostname)",
+          "hide": 2,
+          "includeAll": false,
+          "multi": false,
+          "name": "clickhouse_hostname",
+          "options": [],
+          "query": {
+            "query": "label_values({__name__ =~ \"chi_clickhouse_metric_Uptime|chi_clickhouse_metric_fetch_errors\"}, hostname)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-30m",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "home",
+    "uid": "ZQZypr5Vz",
+    "version": 17,
+    "weekStart": ""
+  }
