@@ -21,7 +21,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 132,
+  "id": 85,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -106,7 +106,7 @@
           "exemplar": true,
           "expr": "rate(erda_system_log_service_consumed_num_micro_service[1m])",
           "interval": "1m",
-          "legendFormat": "",
+          "legendFormat": "{{pod}}-{{instance}}",
           "refId": "A"
         }
       ],
@@ -259,7 +259,12 @@
           "show": false
         },
         "showHeader": true,
-        "sortBy": []
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Time"
+          }
+        ]
       },
       "pluginVersion": "8.3.3",
       "targets": [
@@ -269,7 +274,7 @@
             "uid": "P91F39821A59331CC"
           },
           "exemplar": true,
-          "expr": "erda_system_log_service_slow_analysis_micro_service",
+          "expr": "topk(20, erda_system_log_service_slow_analysis_micro_service)",
           "format": "table",
           "instant": false,
           "interval": "",
@@ -298,7 +303,7 @@
             "sort": [
               {
                 "desc": true,
-                "field": "cost_time_nano_sec"
+                "field": "Time"
               }
             ]
           }
@@ -350,13 +355,13 @@
     "list": []
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "log-service",
   "uid": "c5Mg2scVz",
-  "version": 11,
+  "version": 5,
   "weekStart": ""
 }
