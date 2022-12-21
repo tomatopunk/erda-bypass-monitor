@@ -5,4 +5,4 @@ ENV GRAFANA_DASHBOARDS_DIR=$GRAFANA_WORK_DIR/erda-bypass/
 
 RUN mkdir -pv $GRAFANA_WORK_DIR
 
-COPY grafana/dashboards $GRAFANA_DASHBOARDS_DIR/dashboards/
+COPY dashboard/dashboards $GRAFANA_DASHBOARDS_DIR/dashboards/
